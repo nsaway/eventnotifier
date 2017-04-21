@@ -11,11 +11,11 @@ func main(){
 	}
 
 	// obj.alertObj(message,showFullscreen,Priority)
-	//Priority has 3 values, 0 for INFO, 1 for WARING and 3 for CRITICAL
+	//Priority has 4 values, 0 for NOTICE, 1 for INFO 2 for WARNING  and 3 for CRITICAL
 
-	dbo.alertObj("INFO",false,0)
+	dbo.alertObj("INFO",1)
 
-	//dbo.alertObj("WARNING",false,1)
+	//dbo.alertObj("WARNING",2)
 
-	//dbo.alertObj("CRITICAL",true,2)
+	//dbo.alertObj("CRITICAL",3)
 }

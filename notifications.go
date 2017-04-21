@@ -1,4 +1,3 @@
-
 package main
 
 import (
@@ -10,9 +9,10 @@ import (
 )
 
 const (
-	NOTICE = 0
-	WARNING = 1
-	CRITICAL = 2
+	INFO = 0
+	NOTICE = 1
+	WARNING = 2
+	CRITICAL = 3
 )
 
 
@@ -32,17 +32,14 @@ func newDesktopNotifications() *DesktopNotifications {
 	return dn
 }
 
-func (dn *DesktopNotifications) show(cat, message string, showFullscreen bool, Priority int) error {
+func (dn *DesktopNotifications) show(cat, message string,  Priority int) error {
+
 	hints := make(map[string]interface{})
-	//hints[notify.HintResident] = true
 	hints[notify.HintTransient] = false
 	hints[notify.HintActionIcons] = "NSAway"
 	icon := "dialog-warning"
 	timeout := notify.ExpiresDefault
-
-	if showFullscreen {
-		hints[notify.HintUrgency] = notify.UrgencyCritical
-	}
+	showFullscreen := false
 
 	if Priority == NOTICE {
 		icon = "dialog-information"
@@ -54,6 +51,11 @@ func (dn *DesktopNotifications) show(cat, message string, showFullscreen bool, P
 	if Priority == CRITICAL {
 		timeout = notify.ExpiresNever
 		icon = "dialog-error"
+		showFullscreen = true
+	}
+
+	if showFullscreen {
+		hints[notify.HintUrgency] = notify.UrgencyCritical
 	}
 
 

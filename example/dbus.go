@@ -1,7 +1,7 @@
 package main
 
 import (
-//  "fmt"
+	"log"
         "github.com/godbus/dbus"
 )
 
@@ -28,11 +28,12 @@ func newDbusObject() (*dbusObject, error) {
         return &dbusObject{conn.Object(busName, objectPath)}, nil
 }
 
-func (ob *dbusObject) alertObj(Msg string, FullScreen bool, Priority int) {
-    dobj := slmData{Msg, FullScreen, Priority}
+func (ob *dbusObject) alertObj(Msg string, Priority int) {
+    dobj := slmData{Msg, Priority}
     call := ob.Call("com.NSAway.EventNotifier.Alert", 0, dobj)
     if call.Err != nil {
-        panic(call.Err)
+            log.Println("errore")
+	    panic(call.Err)
     }
 }
 

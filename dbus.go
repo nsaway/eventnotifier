@@ -16,7 +16,6 @@ type dbusServer struct {
 
 type slmData struct {
     Msg string
-    FullScreen bool
     Priority int
 }
 
@@ -45,7 +44,7 @@ func newDbusServer() (*dbusServer, error) {
 }
 
 func (ds *dbusServer) Alert(obj slmData) *dbus.Error {
-    dn.show("sysevent", obj.Msg, obj.FullScreen, obj.Priority)
+    dn.show("sysevent", obj.Msg, obj.Priority)
 
 	return nil
 }
