@@ -8,16 +8,13 @@ var dn *DesktopNotifications
 
 func main() {
 
-	dbs, err := newDbusServer();
+	_, err := newDbusServer();
         dn = newDesktopNotifications()
 
 	if err != nil {
 		log.Printf("Error: %v", err)
 		return
 	}
-
-	for dbs.run == true {
-		/* Run forever */
-        }
+	select {}
 
 }
