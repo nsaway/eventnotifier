@@ -1,0 +1,18 @@
+language: go
+
+go:
+  - master
+
+os:
+  - linux
+
+dist: trusty
+
+before_install:
+    - sudo apt-get -qq update 
+    - go get -v github.com/godbus/dbus
+    - go get -v github.com/TheCreeper/go-notify 
+
+install:
+  - go build
+
